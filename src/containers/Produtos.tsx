@@ -9,9 +9,12 @@ import { RootReducer } from '../store'
 
 const ProdutosComponent = () => {
   const { data: produtos, isLoading } = useGetProdutoQuery()
+
+  const favoritos = useSelector((state: RootReducer) => state.favoritos.itens)
+
   if (isLoading) return <h2>Carregando...</h2>
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const favoritos = useSelector((state: RootReducer) => state.favoritos.itens)
+
   const produtoEstaNosFavoritos = (produto: ProdutoType) => {
     const produtoId = produto.id
     const idsDosFavoritos = favoritos.map((f) => f.id)
